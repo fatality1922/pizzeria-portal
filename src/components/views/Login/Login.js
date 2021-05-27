@@ -1,9 +1,24 @@
 import React from 'react';
+//import propTypes from 'prop-types';
 import styles from './Login.module.scss';
+import { FormControl, Input, InputLabel, Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => (
   <div className={styles.component}>
-    <h2>Login View</h2>
+    <Paper  elevation={24} className={styles.paper}>
+      <h2>Login</h2>
+      <FormControl>
+        <InputLabel htmlFor="my-input">Email address</InputLabel>
+        <Input id="my-input" aria-describedby="my-helper-text" />
+      </FormControl> <br></br>
+      <FormControl>
+        <InputLabel htmlFor="my-input">Password</InputLabel>
+        <Input id="my-input" aria-describedby="my-helper-text" />
+      </FormControl>
+      <Button className={styles.button} component={Link} to={`${process.env.PUBLIC_URL}/`} >Log in</Button>
+    </Paper>
   </div>
 );
 
