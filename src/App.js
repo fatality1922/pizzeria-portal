@@ -17,6 +17,8 @@ import BookedEvent from './components/views/BookedEvent/BookedEvent';
 import { StylesProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,29 +34,31 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter basename={'/panel'}>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <MainLayout>
-              <Switch>
-                <Route exact path={process.env.PUBLIC_URL + '/'} component={Homepage} />
-                <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
-                <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
-                <Route exact path={process.env.PUBLIC_URL + '/tables/booking/new'} component={NewBookingTable} />
-                <Route exact path={process.env.PUBLIC_URL + '/tables/booking/:id'} component={BookedTable} />
-                <Route exact path={process.env.PUBLIC_URL + '/tables/event/new'} component={NewBookingEvent} />
-                <Route exact path={process.env.PUBLIC_URL + '/tables/event/:id'} component={BookedEvent} />
-                <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
-                <Route exact path={process.env.PUBLIC_URL + '/waiter/order/new'} component={NewOrder} />
-                <Route exact path={process.env.PUBLIC_URL + '/waiter/order/:id'} component={Order} />
-                <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} />
-              </Switch>
-            </MainLayout>
-          </ThemeProvider>
-        </StylesProvider>
-      </BrowserRouter>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter basename={'/panel'}>
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <MainLayout>
+                <Switch>
+                  <Route exact path={process.env.PUBLIC_URL + '/'} component={Homepage} />
+                  <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
+                  <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
+                  <Route exact path={process.env.PUBLIC_URL + '/tables/booking/new'} component={NewBookingTable} />
+                  <Route exact path={process.env.PUBLIC_URL + '/tables/booking/:id'} component={BookedTable} />
+                  <Route exact path={process.env.PUBLIC_URL + '/tables/event/new'} component={NewBookingEvent} />
+                  <Route exact path={process.env.PUBLIC_URL + '/tables/event/:id'} component={BookedEvent} />
+                  <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
+                  <Route exact path={process.env.PUBLIC_URL + '/waiter/order/new'} component={NewOrder} />
+                  <Route exact path={process.env.PUBLIC_URL + '/waiter/order/:id'} component={Order} />
+                  <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Kitchen} />
+                </Switch>
+              </MainLayout>
+            </ThemeProvider>
+          </StylesProvider>
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 
